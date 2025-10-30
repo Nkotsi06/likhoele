@@ -10,13 +10,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS configuration for production
+// ✅ CORS configuration for production - ADD YOUR FRONTEND URL
 const corsOptions = {
   origin: [
     'https://likhoele.onrender.com', // Your deployed backend
-    // Add your frontend production URLs here when deployed:
-    // 'https://your-frontend-app.netlify.app',
-    // 'https://your-frontend-app.vercel.app'
+    'https://likhoele-1.onrender.com', // Your deployed frontend - ADD THIS LINE
+    'http://localhost:3000', // For local development
+    'http://127.0.0.1:3000'
   ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -41,7 +41,11 @@ app.get('/health', (req, res) => {
     environment: 'production',
     backend: 'deployed',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.0',
+    allowedOrigins: [
+      'https://likhoele.onrender.com',
+      'https://likhoele-1.onrender.com'
+    ]
   });
 });
 
@@ -73,12 +77,13 @@ app.use(errorHandler);
 connect()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(` Production Server running on port ${PORT}`);
-      console.log(` Production URL: https://likhoele.onrender.com`);
-      console.log(` Health check: https://likhoele.onrender.com/health`);
+      console.log(`🚀 Production Server running on port ${PORT}`);
+      console.log(`🌐 Backend URL: https://likhoele.onrender.com`);
+      console.log(`🌐 Frontend URL: https://likhoele-1.onrender.com`);
+      console.log(`✅ CORS configured for frontend access`);
     });
   })
   .catch((err) => {
-    console.error(' Database connection failed:', err.message);
+    console.error('❌ Database connection failed:', err.message);
     process.exit(1);
   });
