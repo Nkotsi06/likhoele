@@ -2,18 +2,28 @@
   "name": "employee-attendance-tracker",
   "version": "1.0.0",
   "description": "Full-stack Employee Attendance Tracker with React and Node.js",
+  "main": "server.js",
   "scripts": {
+    "build": "cd backend && npm install",
+    "start": "node server.js",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
-    "start": "cd backend && npm start",
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "pg": "^8.16.3",
+    "dotenv": "^16.6.1"
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
   },
   "keywords": ["react", "nodejs", "postgresql", "attendance", "tracker"],
   "author": "Your Name",
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": "20.x"
+  }
 }
