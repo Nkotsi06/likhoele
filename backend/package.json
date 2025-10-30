@@ -4,8 +4,8 @@
   "description": "Backend for Employee Attendance Tracker",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js",       
+    "dev": "nodemon server.js"       
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": "20.x"                   
   }
 }
